@@ -6,16 +6,39 @@ import Button from 'react-bootstrap/Button'
                                                                                                                           
 class Main extends React.Component {
 
-    //
-    
+  constructor(props){
+    super(props);
 
-    Update= () => {
-
-    this.setState ({
-         
-    })
-
+    this.state= {
+        image_url: Data.map((value)=> 
+        value.image_url
+        ),
+        title : Data.map((value)=> 
+        value.title
+        ),
+        description : Data.map((value)=> 
+        value.description)
+        ,
+        keyword : Data.map((value)=> 
+        value.keyword)
+        ,
+        horns: Data.map((value)=> 
+        value.horns)
+       , show : false,
+       setShow : false
 }
+}
+        handleShow=() => { 
+         this.setState({
+            show : true
+        })
+      }
+
+       handleClose=() => { 
+        this.setState({
+           show : false
+       })}
+ 
 
     
 
@@ -30,32 +53,49 @@ class Main extends React.Component {
 
                 <Modal.Body>
                 <p>{this.props.description}</p>
+                <img src={this.props.image_url} alt="" width={100}/>
                 </Modal.Body>
 
                 <Modal.Footer>
                 <Button variant="secondary">Close</Button>
-                <Button variant="primary">Save changes</Button>
+                {/* <Button variant="primary">Save changes</Button> */}
                 
 
-     <Button variant="primary" onClick={this.props.handleShow}> View
+     <Button variant="primary" onClick={this.handleShow}> View
              </Button>
-      <Modal show={this.props.show} onHide={this.props.handleClose}  animation={false}>
+      <Modal show={this.state.show} onHide={this.handleClose}  animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{this.props.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <img src={this.props.image_url} alt="" width={300}/>
+          <p>
+          description: 
+            {this.props.description}
+          </p>
+          <p>
+          keyword: 
+            {this.props.keyword}
+          </p>
+          <p>
+          horns
+            {this.props.horns}
+          </p>
+          
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={this.props.handleClose}>
+          <Button variant="secondary" onClick={this.handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={this.props.handleClose}>
+
+          {/* <Button variant="primary" onClick={this.props.handleClose}>
             Save Changes
-         </Button>
+         </Button> */}
          </Modal.Footer>
          </Modal>
                 
-                 </Modal.Footer>
-                </Modal.Dialog>
+          </Modal.Footer>
+          </Modal.Dialog>
             </div>
             )
     }

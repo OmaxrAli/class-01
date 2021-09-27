@@ -31,17 +31,13 @@ class App extends React.Component{
         ,
         horns: Data.map((value)=> 
         value.horns)
+       , show : false,
+       setShow : false
 }
 }
 
-  theState=() => {
-    
-    this.show = false;
-    this.setShow = false;
-   
-    }
-    handleClose = () => this.setShow= false;
-    handleShow = () => this.show= true;
+
+
    
 
  
@@ -61,10 +57,7 @@ class App extends React.Component{
         {
         Data.map((HB)=> <Main  
 
-        show={this.show}
-        theState={this.theState}
-        handleShow={this.handleShow}
-        handleClose={this.handleClose}
+        
 
         image_url= {HB.image_url}
         title ={HB.title}
