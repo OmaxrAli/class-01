@@ -1,20 +1,82 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/Footer';
-// import Main from './components/Main';
+import Main from './components/Main';
 import Header from './components/Header';
 import HornedBeasts from './components/HornedBeasts';
-// import HB2 from './components/HB2';
+import Data from './data.json';
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+
 
 class App extends React.Component{
 
+  
+
+  constructor(props){
+    super(props);
+
+    this.state= {
+        image_url: Data.map((value)=> 
+        value.image_url
+        ),
+        title : Data.map((value)=> 
+        value.title
+        ),
+        description : Data.map((value)=> 
+        value.description)
+        ,
+        keyword : Data.map((value)=> 
+        value.keyword)
+        ,
+        horns: Data.map((value)=> 
+        value.horns)
+}
+}
+
+  theState=() => {
+    
+    this.show = false;
+    this.setShow = false;
+   
+    }
+    handleClose = () => this.setShow= false;
+    handleShow = () => this.show= true;
+   
+
+ 
   render(){
 
      return(
 
       <div>
+         
         <Header/>
-        <HornedBeasts/>
+        
+        
+        
+        
+        
+        
+        {
+        Data.map((HB)=> <Main  
+
+        show={this.show}
+        theState={this.theState}
+        handleShow={this.handleShow}
+        handleClose={this.handleClose}
+
+        image_url= {HB.image_url}
+        title ={HB.title}
+        description= {HB.description}
+        keyword ={HB.keyword}
+        horns= {HB.horns}
+       
+        />
+        )}
+        
+        
+        {/* <HornedBeasts/> */}
         <Footer/>
       </div>
       
